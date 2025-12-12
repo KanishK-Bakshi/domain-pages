@@ -1,0 +1,416 @@
+/* Custom Fonts */
+@font-face {
+    font-family: 'Harding';
+    src: url('Files/Fonts/HardingTextWeb-Regular/HardingTextWeb-Regular.woff2') format('woff2'),
+         url('Files/Fonts/HardingTextWeb-Regular/HardingTextWeb-Regular.woff') format('woff'),
+         url('Files/Fonts/HardingTextWeb-Regular/HardingTextWeb-Regular.ttf') format('truetype'),
+         url('Files/Fonts/HardingTextWeb-Regular/HardingTextWeb-Regular.eot') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background 0.3s, color 0.3s, border 0.3s, box-shadow 0.3s;
+}
+
+:root {
+    --primary-color: #0d47a1;
+    --secondary-color: #0d47a1;
+    --accent-color: #4caf50;
+    --background-color: #f8f9fa;
+    --card-bg: #fff;
+    --card-gradient: linear-gradient(145deg, #fff, #f4f6fa 80%);
+    --header-gradient: linear-gradient(120deg, #e3eafc 0%, #f5f7fa 100%);
+    --footer-bg: #f5f7fa;
+    --text-color: #222;
+    --muted-text: #666;
+    --border-color: #e0e0e0;
+    --shadow: 0 4px 24px rgba(0,0,0,0.07);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.11);
+    --radius: 16px;
+    --link-hover-color: #0288d1;
+    --button-hover-color: #ff5722;
+}
+
+/* Typography */
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Harding', Georgia, 'Times New Roman', Times, serif;
+    color: var(--text-color);
+}
+body {
+    background: var(--background-color);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    min-height: 100vh;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+    width: 92%;
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+/* Header */
+header {
+    background: var(--header-gradient);
+    color: var(--primary-color);
+    padding: 2.2rem 0 1.2rem 0;
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: 0 2px 16px rgba(13,71,161,0.06);
+    margin-bottom: 2.5rem;
+}
+header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+header h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.2rem;
+}
+header .subtitle, header h3 {
+    color: var(--secondary-color);
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.7rem;
+    margin-top: 0.2rem;
+}
+header nav {
+    width: 100%;
+    margin-top: 0.7rem;
+}
+header nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    flex-wrap: wrap;
+}
+header nav ul li a {
+    color: var(--primary-color);
+    font-size: 1.08rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+    display: block;
+}
+header nav ul li a:hover, header nav ul li a:focus {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Responsive Navigation (Hamburger for mobile) */
+@media (max-width: 700px) {
+    header .container {
+        align-items: stretch;
+    }
+    header nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    header nav ul li a {
+        padding: 0.9rem 1.2rem;
+        font-size: 1.13rem;
+    }
+    header {
+        padding: 1.2rem 0 0.7rem 0;
+    }
+    .container {
+        width: 98%;
+    }
+}
+
+/* Hero Section */
+.hero {
+    background: var(--card-gradient);
+    border-radius: var(--radius);
+    padding: 2.7rem 2.2rem 2.2rem 2.2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+.hero h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+}
+.hero p {
+    font-size: 1.18rem;
+    color: var(--muted-text);
+    margin: 0 auto;
+    max-width: 700px;
+    font-weight: 400;
+}
+
+/* Card List & Card Section */
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.2rem;
+    justify-content: space-between;
+}
+.card-section {
+    flex: 1 1 320px;
+    background: var(--card-gradient);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2.2rem 1.7rem;
+    margin-bottom: 2rem;
+    min-width: 320px;
+    transition: box-shadow 0.2s, border 0.2s, transform 0.2s;
+}
+.card-section:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-color);
+    transform: translateY(-6px) scale(1.01);
+}
+.card-section h2 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: 1.1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+.card-section ul {
+    padding-left: 1.1rem;
+}
+.card-section li {
+    margin-bottom: 1.1rem;
+    font-size: 1.07rem;
+    color: var(--text-color);
+}
+.awards-list li {
+    margin-bottom: 1.3rem;
+}
+
+/* Only for Projects section: stack project tiles vertically */
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Project card layout: image left, text right, image fills tile height */
+.projects-list .card-section {
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+    min-height: 180px; /* You can adjust this value */
+}
+
+.projects-list .card-section img {
+    width: 220px;         /* Increase width for a square look */
+    height: 220px;        /* Match height to width */
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: block;
+    align-self: center;   /* Vertically center image if card-section is taller */
+}
+
+/* Section Titles */
+section h2 {
+    font-size: 2.1rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+    letter-spacing: 0.01em;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover, .card a:hover {
+    color: var(--secondary-color);
+}
+
+/* Footer */
+footer {
+    background: var(--footer-bg);
+    color: #222;
+    text-align: center;
+    padding: 2.2rem 0 1.2rem 0;
+    margin-top: 2.5rem;
+    border-radius: var(--radius) var(--radius) 0 0;
+    font-size: 1.07rem;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+}
+footer p {
+    margin: 0;
+    font-style: italic;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+/* Contact Section */
+.contact-section h2 {
+    margin-top: 2rem;
+}
+.contact-section ul {
+    list-style: none;
+    padding: 0;
+}
+.contact-section ul li {
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+}
+.contact-section a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.contact-section a:hover {
+    color: var(--secondary-color);
+}
+
+/* Button Styles */
+button, .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: inherit;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(13,71,161,0.08);
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+}
+button:hover, .btn-primary:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Section Navigation (for publications page) */
+.section-nav {
+    margin: 1.5rem 0 2rem 0;
+    text-align: center;
+}
+.section-nav ul {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(13,71,161,0.06);
+    padding: 0.5rem 1rem;
+}
+.section-nav ul li a {
+    color: var(--primary-color);
+    font-size: 1.05rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 500;
+    display: block;
+}
+.section-nav ul li a:hover, .section-nav ul li a:focus {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .card-list {
+        flex-direction: column;
+        gap: 0;
+    }
+    .card-section {
+        min-width: unset;
+    }
+    header .container {
+        align-items: center;
+    }
+}
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    section h2 {
+        font-size: 1.5rem;
+    }
+    .card-section {
+        padding: 1.2rem;
+    }
+    .hero {
+        padding: 1.5rem 0.7rem;
+    }
+    .section-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+}
+@media (max-width: 768px) {
+    header .container {
+        align-items: center;
+    }
+    header nav ul {
+        flex-direction: column;
+        gap: 0.7rem;
+        margin-top: 1rem;
+    }
+    .container {
+        width: 98%;
+    }
+}
+
+/* About Section Image Formatting */
+#about .about-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+#about .about-image {
+    max-width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+#about p {
+    flex: 1;
+    line-height: 1.6;
+    font-size: 1.13rem;
+    color: var(--text-color);
+    text-align: justify;
+    margin-top: 1rem;
+}
+
+
