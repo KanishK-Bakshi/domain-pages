@@ -2,86 +2,333 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quantum-Hybrid Graph Architectures for High-Luminosity LHC Tracking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio page for Quantum-Hybrid Graph Architectures for High-Luminosity LHC Tracking.">
-    <link rel="icon" type="image/png" href="../../Images/Favicon.png">
+    <title>Quantum-Hybrid Graph Architectures | Portfolio</title>
+    <meta name="description" content="A Deep Learning and Quantum Computing approach to High-Luminosity LHC particle tracking.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue */
+            --accent-color: #3498db;  /* Bright Blue */
+            --success-color: #27ae60; /* Green */
+            --failure-color: #e74c3c; /* Red */
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-btn {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover { color: white; }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .project-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary { background-color: white; color: var(--primary-color); }
+        .btn-outline { border: 2px solid white; color: white; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+        /* --- Main Container --- */
+        .container {
+            max-width: 900px;
+            margin: -3rem auto 2rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        h2.section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        .project-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+        }
+
+        /* --- Timeline Styles --- */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+            border-left: 3px solid #ddd;
+        }
+
+        .timeline-item.fail { border-left-color: var(--failure-color); }
+        .timeline-item.benchmark { border-left-color: #f39c12; } /* Orange */
+        .timeline-item.success { border-left-color: var(--accent-color); }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+
+        .timeline-item.fail::before { background: var(--failure-color); }
+        .timeline-item.benchmark::before { background: #f39c12; }
+        .timeline-item.success::before { background: var(--accent-color); }
+
+        .phase-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* --- QUANTUM SPECIAL SECTION --- */
+        .quantum-card {
+            background: linear-gradient(145deg, #ffffff, #f0f7ff);
+            border-left: 5px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.1);
+        }
+
+        .quantum-card::after {
+            content: 'Ψ';
+            position: absolute;
+            right: -20px;
+            bottom: -40px;
+            font-size: 15rem;
+            color: rgba(52, 152, 219, 0.05);
+            font-family: 'Times New Roman', serif;
+            pointer-events: none;
+        }
+
+        .highlight-text {
+            font-size: 1.05rem;
+            color: #2c3e50;
+            font-weight: 500;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .math-block {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        /* --- Tech Stack --- */
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-tag {
+            background: #eee;
+            color: #555;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
+
+    <header class="hero">
+        <div class="back-nav">
+            <a href="../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Main</a>
+        </div>
+        <div class="project-title">Quantum-Hybrid Graph Architectures</div>
+        <div class="project-subtitle">Solving the Combinatorial Explosion in HL-LHC Particle Reconstruction</div>
+        
+        <div class="hero-buttons">
+            <a href="https://arxiv.org/pdf/2307.12033.pdf" target="_blank" class="btn btn-primary">
+                <i class="fas fa-file-pdf"></i> Read Paper
+            </a>
+            <a href="https://github.com/LAL-TrackML/trackml-library" target="_blank" class="btn btn-outline">
+                <i class="fab fa-github"></i> View Code
+            </a>
+        </div>
+    </header>
+
     <div class="container">
-        <a href="../../index.html" class="back-btn">&larr; Back to Main Page</a>
-        <div class="project-header">
-            <div class="project-title-group">
-                <div class="project-title">Quantum-Hybrid Graph Architectures for High-Luminosity LHC Tracking</div>
-                <div class="project-subtitle">Solving the Combinatorial Explosion in Particle Reconstruction</div>
+        
+        <section class="card">
+            <h2 class="section-title">The Challenge</h2>
+            <p>
+                The High-Luminosity Large Hadron Collider (HL-LHC) will generate data at rates that defy classical computation. With <strong>40 million collisions per second</strong>, we are tasked with reconnecting 100,000 discrete points into accurate particle trajectories.
+            </p>
+            <p>
+                This is a combinatorial nightmare (O(N)). We need an algorithm that is not just accurate, but fast enough for hardware triggers.
+            </p>
+            <video class="project-img" controls autoplay loop muted playsinline>
+            <source src="Images/Particles_colliding-2880x1620_Lede.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <section class="card">
+            <h2 class="section-title">The Evolution of the Solution</h2>
+            
+            <div class="timeline-item fail">
+                <span class="phase-title">Phase 1: The Classical Failure (DBSCAN)</span>
+                <p>
+                    We began with the standard approach: <strong>Density-Based Spatial Clustering (DBSCAN)</strong>. The logic was simple—particles should form dense clusters of hits.
+                </p>
+                <p>
+                    <strong>The Result? A Disaster.</strong> We achieved only <strong>~10% Accuracy</strong>.
+                    <br>
+                    <em>Why?</em> High-energy physics is not static. Tracks cross, spiral, and overlap. Density algorithms get confused by the intersections, merging distinct particles into useless blobs. We needed something smarter.
+                </p>
             </div>
-            <div class="project-links">
-                <a href="https://arxiv.org/pdf/2307.12033.pdf" target="_blank">&#128196; Paper (PDF)</a>
-                <a href="https://github.com/LAL-TrackML/trackml-library" target="_blank">&#128187; Code (GitHub)</a>
+
+            <div class="timeline-item benchmark">
+                <span class="phase-title">Phase 2: The Benchmark (Kaggle "Top Quarks")</span>
+                <p>
+                    We turned to the world's best solution: The <a href="https://www.kaggle.com/competitions/trackml-particle-identification/writeups/top-quarks-1st-place-solution-with-code-and-offici" target="_blank" style="color: #f39c12; font-weight: bold;">"Top Quarks" 1st Place Solution</a>.
+                </p>
+                <p>
+                    This is a C++ masterpiece. It uses an <strong>Iterative Seeding and Extending</strong> approach (Sparse/Dense grid search). It meticulously builds one track at a time, removing used hits, and trying again.
+                </p>
+                <p>
+                    <strong>The Result: Excellent Accuracy (~92%).</strong> 
+                    <br>
+                    <strong>The Fatal Flaw:</strong> It is <em>slow</em>. Because it is serial (finding one track after another), it cannot scale to the microsecond latency required by the LHC triggers. It finds the needle in the haystack, but it takes all day to do it.
+                </p>
             </div>
-        </div>
 
-        <h2 class="section-title">Problem Statement</h2>
-        <p>
-            <b>Context:</b> The High-Luminosity Large Hadron Collider (HL-LHC) will increase collision rates to 40 MHz.<br>
-            <b>The Challenge:</b> Each event produces ~100,000 discrete 3D sensor hits (x, y, z) from ~10,000 particles. Reconnecting these dots into continuous tracks creates a combinatorial explosion (O(N!) complexity).<br>
-            <b>The Constraint:</b> Current algorithms achieve high accuracy but are too slow (minutes/event) for real-time hardware triggers (microseconds required).
-        </p>
-        <img class="project-img" src="https://cds.cern.ch/record/2298856/files/ATLAS-EventDisplay-2017-2.jpg" alt="HL-LHC Event Display">
+            <div class="timeline-item success">
+                <span class="phase-title" style="font-size: 1.4rem; color: var(--accent-color);">Phase 3: The Quantum Leap (Hybrid GNN-QUBO)</span>
+                
+                <p>
+                    We realized that to beat the speed limit, we had to stop searching for tracks and start <strong>solving the system as a whole.</strong> We moved from Iterative logic to Quantum Physics.
+                </p>
 
-        <h2 class="section-title">Methodology & Evolution</h2>
-        <p>
-            <b>Phase 1: Classical Baseline (DBSCAN)</b><br>
-            Approach: Used standard density-based clustering (DBSCAN) after conformal mapping.<br>
-            Result: Failed. Efficiency ~7.75%.<br>
-            Insight: Heuristic clustering cannot handle crossing tracks in dense environments.
-        </p>
-        <p>
-            <b>Phase 2: State-of-the-Art Reproduction (Iterative Seeding)</b><br>
-            Approach: Implemented the "Top-Quarks" (Kaggle Winner) logic using KD-Tree spatial indexing and iterative 3-point Helix Fitting.<br>
-            Result: Success. Achieved 98.95% ± 0.12% Efficiency across 20 benchmark events.<br>
-            The "Bottleneck": Average processing time was 270 seconds per event (serial execution). This proves classical methods are accurate but computationally impossible for HL-LHC triggers.
-        </p>
-        <img class="project-img" src="https://atlas.cern/sites/atlas-public.web.cern.ch/files/styles/large/public/field/image/atlas-event-display-2021-1.jpg" alt="ATLAS Event Display">
+                <div class="quantum-card">
+                    <h3 style="color: var(--primary-color); margin-top:0;">1. The Architect (Graph Neural Network)</h3>
+                    <p>
+                        We use a Geometric Deep Learning pipeline (GNN) to construct a "Graph of Possibilities." It doesn't solve the problem; it strips away the obvious noise, leaving us with a clean scaffolding of potential connections.
+                    </p>
+                    <img src="Images/Graph neural network.webp" alt="Graph Neural Network Structure" class="project-img" style="margin-bottom: 1rem;">
 
-        <p>
-            <b>Phase 3: The Novel Solution (Hybrid Quantum-GNN)</b><br>
-            Concept: Replaced serial fitting with a parallelizable "Filter & Solve" pipeline.<br>
-            <b>Step A (Filter):</b> A Graph Neural Network (MLP/GNN) classifies valid connections, achieving 0.9980 ROC-AUC locally but leaving global conflicts (bifurcations).<br>
-            <b>Step B (Solver):</b> Formulated the conflict resolution as a Quadratic Unconstrained Binary Optimization (QUBO) problem, enforcing "Gauss's Law" (flow conservation) constraints.<br>
-            Result: Simulated Quantum Annealing achieved 99.1% Purity with a total processing time of ~25 seconds (10x speedup in Python, theoretically O(1) depth on Quantum Hardware).
-        </p>
+                    <h3 style="color: var(--primary-color);">2. The Judge (Hamiltonian Physics)</h3>
+                    <p>
+                        This is the core innovation. We translate the laws of physics into a mathematical equation called a <strong>Hamiltonian (H)</strong>.
+                    </p>
+                    <div class="highlight-text">
+                        We don't code "rules." We create an energy landscape. <br>
+                        A valid particle track represents the <strong>Low Energy Ground State</strong>. A broken track creates <strong>High Energy Friction</strong>.
+                    </div>
+                    <div class="math-block">
+                        Minimize: H = &sum; (Connection Strength) - &sum; (Physical Constraints)
+                    </div>
 
-        <div class="section-title">Key Results Visualization</div>
-        <div class="placeholder-graph">[Bar Chart: Efficiency vs. Time — Classical SOTA (98%, 270s) vs. Hybrid Model (97%, 25s)]</div>
-        <div class="key-results">
-            <b>The Funnel:</b><br>
-            Input: 1010 raw pairs (Noise) → Geometric Filter: 224k edges (6% Signal) → GNN Filter: 14k edges (88% Signal) → Quantum Solver: 12k final segments (99% Signal)
-        </div>
+                    <h3 style="color: var(--primary-color);">3. The Solver (Quantum Tunneling)</h3>
+                    <p>
+                        Classical algorithms (like the Kaggle solution) get stuck in "local minima"—they find a good path and stop looking. 
+                        <br><br>
+                        <strong>Quantum Annealing plays by different rules.</strong> By exploiting quantum tunneling, our solver can pass <em>through</em> energy barriers, exploring the entire solution space simultaneously. It doesn't iterate; it settles into the optimal solution instantly.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-        <h2 class="section-title">Conclusion</h2>
-        <p>
-            Classical geometric algorithms have hit a speed ceiling.<br>
-            Our Hybrid architecture demonstrates that we can trade a negligible amount of accuracy (&lt;1%) for a massive gain in computational speed and parallelizability.<br>
-            This establishes a viable path for using Quantum-AI hybrids in the future HL-LHC Level-1 Trigger.
-        </p>
+        <section class="card">
+            <h2 class="section-title">Technologies Used</h2>
+            <ul class="tech-list">
+                <li class="tech-tag">Python & C++</li>
+                <li class="tech-tag">PyTorch GNN</li>
+                <li class="tech-tag">DBSCAN (Baseline)</li>
+                <li class="tech-tag">Kaggle Top-Quarks Logic</li>
+                <li class="tech-tag">QUBO Formulation</li>
+                <li class="tech-tag">D-Wave Quantum Annealer</li>
+                <li class="tech-tag">Hamiltonian Optimization</li>
+            </ul>
+        </section>
 
-        <h2 class="section-title">Technologies Used</h2>
-        <ul class="tech-list">
-            <li>Python</li>
-            <li>C++</li>
-            <li>Pandas</li>
-            <li>NumPy</li>
-            <li>Scikit-Learn (MLP)</li>
-            <li>SciPy (cKDTree)</li>
-            <li>NetworkX</li>
-            <li>Helix Dynamics</li>
-            <li>Conformal Mapping</li>
-            <li>Lorentz Transformations</li>
-            <li>QUBO Formulation</li>
-            <li>Hamiltonian Optimization</li>
-        </ul>
     </div>
 </body>
 </html>
