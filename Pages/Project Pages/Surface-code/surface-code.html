@@ -120,122 +120,224 @@
 </head>
 <body>
 
-    <header class="hero">
-        <div class="back-nav">
-            <a href="../../index.html" class="back-btn">
-    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-    Back to Home
-</a>
-        </div>
-        <h1 class="project-title">Fault Injection in Surface Codes</h1>
-        <p class="project-subtitle">Validating Quantum Reliability through Logical Qubit Scaling and Error Suppression</p>
-        
-        <div class="hero-buttons">
-            <a href="#implementation" class="btn btn-primary">View Implementation</a>
-            <a href="#methodology" class="btn btn-outline">Methodology</a>
-        </div>
-    </header>
+<header class="hero">
+  <div class="back-nav">
+    <a href="../../index.html" class="back-btn" aria-label="Back to Home">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      Back to Home
+    </a>
+  </div>
 
-    <div class="container">
+  <h1 class="project-title">Reliability Analysis of Dynamic Surface Code Deformation</h1>
+  <p class="project-subtitle">Design, Analysis, and Validation of Dynamic Surface Code Deformation for Quantum Error Correction under Correlated Faults</p>
 
-        <div class="card" id="methodology">
-            <h2 class="section-title">System Architecture</h2>
-            <p>
-                This project focuses on the implementation and validation of the <strong>Rotated Surface Code</strong>. 
-                The primary objective is to demonstrate how increasing the "Code Distance" (redundancy) impacts the logical error rate of the system.
-            </p>
+  <div class="hero-buttons">
+    <a href="https://workdrive.zoho.in/folder/56cttd3e6733f738b436596ba598d253ec3a4" class="btn btn-primary" style="font-size:1.1rem; padding:1rem 2rem;" target="_blank" rel="noopener">Implementation & Materials</a>
+    <a href="#paper" class="btn btn-outline" style="font-size:1.1rem; padding:1rem 2rem;">Read Report</a>
+  </div>
+</header>
 
-            <div class="grid-2">
-                <div>
-                    <h3 style="margin-top:0; color:var(--primary-color);">The Lattice Design</h3>
-                    <p>The architecture utilizes a 2D grid of physical qubits arranged to perform simultaneous parity checks:</p>
-                    <ul>
-                        <li><strong>Data Qubits:</strong> Holders of the quantum information.</li>
-                        <li><strong>Syndrome Qubits:</strong> Ancilla qubits used to measure X and Z stabilizers without collapsing the superposition.</li>
-                    </ul>
-                </div>
-                <div>
-                    <img src="Images/Suface Code lattice design.png" alt="Surface Code Lattice" class="project-img" style="margin-top:0;">
-                </div>
-            </div>
-        </div>
+<div class="container">
 
-        <div class="card" id="implementation">
-            <h2 class="section-title">Validation Strategy: Fault Injection</h2>
-            <p>
-                To strictly satisfy the course requirement for <em>Reliability Validation</em>, this project employs a fault injection strategy. 
-                Instead of waiting for natural environmental errors, we deliberately inject noise into the simulation to stress-test the decoder.
-            </p>
+  <!-- PAPER (detailed, with embed + download) -->
+  <!-- MOVED TO BOTTOM BEFORE FOOTER -->
 
-            <div class="quantum-card">
-                <div class="timeline-item benchmark">
-                    <span class="phase-title">Phase 1: Detector Error Models</span>
-                    <p>Generating a graph of potential fault mechanisms (Pauli X/Z errors) to verify that the decoding logic can identify error chains.</p>
-                </div>
+  <!-- SYSTEM OVERVIEW -->
+  <div class="card" id="overview">
+    <h2 class="section-title">Project Summary & System Overview</h2>
+    <p>
+      This project investigates the reliability of quantum information encoded using the surface code, focusing on the impact of spatially correlated faults—such as those induced by ionizing radiation—on logical qubit preservation. The study compares two architectural strategies: static redundancy (maintaining a high code distance) and dynamic code deformation (temporarily reducing code distance in response to detected bursts).
+    </p>
+    <p>
+      Using a rotated surface code lattice, the analysis quantifies how burst faults affect logical error rates and overall system performability, providing design guidance for future quantum hardware.
+    </p>
 
-                <div class="timeline-item fail">
-                    <span class="phase-title">Phase 2: Artificial Noise Injection</span>
-                    <p>
-                        Applying unitary rotations (Coherent Errors) and reducing T1/T2 times during idle cycles in the simulation. 
-                        This validates the "Threshold Theorem" by observing system behavior under high-stress conditions.
-                    </p>
-                </div>
+    <div class="grid-2">
+      <div>
+        <h3 style="margin-top:0; color:var(--primary-color);">Surface Code Architecture</h3>
+        <p>The lattice model uses:</p>
+        <ul>
+          <li><strong>Data Qubits</strong> — carry logical information.</li>
+          <li><strong>Syndrome Qubits</strong> — stabilizer measurements.</li>
+          <li><strong>Code Distance (d)</strong> — controls error suppression capability.</li>
+        </ul>
+      </div>
 
-                <div class="timeline-item success">
-                    <span class="phase-title">Phase 3: Decoder Verification</span>
-                    <p>
-                        Running the Minimum Weight Perfect Matching (MWPM) algorithm against the injected faults to calculate the logical fidelity.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2 class="section-title">Implementation Framework</h2>
-            <p>
-                The validation environment is being constructed using <strong>CUDA-Q</strong> to accelerate the circuit simulations. 
-                Below is a representation of the kernel structure used for the fault injection loop.
-            </p>
-            
-            <div class="code-block">
-                <span class="code-comment">// CUDA-Q Kernel for Fault Injection</span><br>
-                <span class="code-keyword">auto</span> surface_code_kernel = [](<span class="code-keyword">int</span> distance, <span class="code-keyword">double</span> noise_prob) {<br>
-                &nbsp;&nbsp;<span class="code-func">cudaq::qvector</span> qubits(2 * distance * distance - 1);<br>
-                <br>
-                &nbsp;&nbsp;<span class="code-comment">// 1. Initialize Logical Zero</span><br>
-                &nbsp;&nbsp;<span class="code-func">h</span>(qubits); <br>
-                <br>
-                &nbsp;&nbsp;<span class="code-comment">// 2. Inject Faults (Identity + Noise Channel)</span><br>
-                &nbsp;&nbsp;<span class="code-keyword">for</span> (<span class="code-keyword">int</span> i = 0; i < qubits.size(); i++) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> (random_double() < noise_prob) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-func">x</span>(qubits[i]); <span class="code-comment">// Inject Bit Flip</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                &nbsp;&nbsp;}<br>
-                <br>
-                &nbsp;&nbsp;<span class="code-comment">// 3. Syndrome Extraction Cycle</span><br>
-                &nbsp;&nbsp;measure_stabilizers(qubits);<br>
-                };
-            </div>
-
-            <div class="highlight-text">
-                <strong>Current Status:</strong> The simulation kernel is being optimized to run varying Code Distances (d=3, d=5) to gather data on the logical error suppression rates.
-            </div>
-
-            <h3 style="margin-top: 30px;">Technology Stack</h3>
-            <ul class="tech-list">
-                <li class="tech-tag">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm0 2.25l8.25 4.71v9.42L12 21.09 3.75 16.38V6.96L12 2.25z"/></svg>
-                    CUDA-Q
-                </li>
-            </ul>
-        </div>
-
+      <div>
+        <picture>
+          <source srcset="Images/Suface Code lattice design.png" type="image/png">
+          <img src="Images/surface-code-2.png" alt="Rotated surface code lattice diagram" class="project-img" style="max-width:100%; height:auto; border-radius:6px;">
+        </picture>
+        <figcaption style="font-size:0.85rem; color: #666; margin-top:0.5rem;">Rotated surface code lattice (data + syndrome qubits)</figcaption>
+      </div>
     </div>
+  </div>
 
-    <footer>
-        <p>Project Course 84120192 | Design, Analysis and Validation of Reliable Computing Systems</p>
-        <p style="font-size: 0.8rem; opacity: 0.6;">Reference: Google Quantum AI, "Suppressing quantum errors by scaling a surface code logical qubit," Nature (2023).</p>
-    </footer>
+  <!-- VALIDATION STRATEGY -->
+  <div class="card" id="validation">
+    <h2 class="section-title">Validation & Methodology</h2>
+    <p>
+      The methodology employs fault injection by simulating spatially localized bursts in the code lattice, stressing the decoder and evaluating both static and dynamic policies. Performance is measured using a performability metric that combines logical error rate and computational utility, reflecting real-world trade-offs.
+    </p>
+
+    <div class="quantum-card">
+      <div class="timeline-item benchmark">
+        <span class="phase-title">Phase 1 — Baseline Validation</span>
+        <p>Establish logical error rates under independent depolarizing noise across code distances.</p>
+      </div>
+
+      <div class="timeline-item fail">
+        <span class="phase-title">Phase 2 — Correlated Fault Injection</span>
+        <p>Inject a spatially localized high-intensity burst with parameter <code>p_burst</code> in the chosen quadrant.</p>
+      </div>
+
+      <div class="timeline-item success">
+        <span class="phase-title">Phase 3 — Policy Evaluation</span>
+        <p>Compare Static Redundancy and Dynamic Deformation policies using the reward metric <code>R = (1 - P_L) × V_config</code>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPLEMENTATION & MATERIALS -->
+  <div class="card" id="implementation">
+    <h2 class="section-title">Implementation & Materials</h2>
+    <p>
+      All simulation scripts, Jupyter notebooks, and supporting materials are available in the shared project folder. The primary repository, including code, data, and presentation slides, can be accessed via the button below:
+    </p>
+    <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.75rem;">
+      <a class="btn btn-primary" style="font-size:1.1rem; padding:1rem 2rem;" href="https://workdrive.zoho.in/folder/56cttd3e6733f738b436596ba598d253ec3a4" target="_blank" rel="noopener">Implementation & Materials (Zoho WorkDrive)</a>
+    </div>
+    <p style="margin-top:0.3rem;">
+      <strong>Implementation snapshot (pseudocode):</strong>
+    </p>
+        <strong>Implementation snapshot (pseudocode):</strong>
+      </p>
+      <pre style="background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:8px; font-size:1rem; font-family:'Consolas','Fira Mono','Menlo',monospace; margin:0; overflow-x:auto; border-left:4px solid #27ae60;">
+    // Pseudocode: Correlated Fault Injection Loop
+    for each QEC_round in rounds:
+      apply_background_noise(p_phys)
+      if burst_condition_met:
+        inject_correlated_noise(Q_burst, p_burst)
+      extract_syndromes()
+      result = decode_with_MWPM()
+      record_logical_outcome(result)
+    end
+      </pre>
+    <p style="margin-top:0.6rem;">
+      The Stim circuits, PyMatching decoder pipeline, and plotting utilities are included in the shared notebook and repository.
+    </p>
+  </div>
+
+
+</div>
+
+<!-- PAPER (detailed, with embed + download) MOVED TO BOTTOM -->
+<div class="container">
+  <div class="card" id="paper">
+    <h2 class="section-title">Project Report — View & Download</h2>
+    <p>
+      The full project report <strong>Design_Analysis_Final_Paper.pdf</strong> is available for inline viewing and for download.
+      The document contains the complete problem statement, methodology, simulation setup (Stim + PyMatching),
+      fault-injection model, performability analysis, SAN-based extension, results and reproducibility instructions.
+    </p>
+    <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.75rem;">
+      <!-- Read Report button triggers both view and download via JS; fallback below -->
+      <button id="readReportBtnInline" class="btn btn-primary">Read Report</button>
+      <a class="btn" href="Design_Analysis_Final_Paper.pdf" download>Download PDF</a>
+    </div>
+    <!-- Embedded PDF viewer with graceful fallback -->
+    <div class="pdf-viewer" style="border:1px solid #e6e6e6; padding:0.5rem; border-radius:6px;">
+      <object data="Design_Analysis_Final_Paper.pdf" type="application/pdf" width="100%" height="640">
+        <p>
+          Your browser does not support inline PDFs. You can
+          <a href="Design_Analysis_Final_Paper.pdf" target="_blank" rel="noopener">open the PDF in a new tab</a>
+          or <a href="Design_Analysis_Final_Paper.pdf" download>download it</a>.
+        </p>
+      </object>
+    </div>
+    <!-- Detailed summary content you asked to keep (methodology / significance snippets) -->
+    <div style="margin-top:1rem;">
+      <h3 style="margin-bottom:0.3rem;">About this Report</h3>
+      <p style="margin-top:0;">
+        This report presents a design analysis and validation study that evaluates dynamic surface code deformation
+        ("hole punching") as an active reliability strategy against spatially correlated faults such as ionizing
+        radiation–induced phonon events. Using Stim for stabilizer circuit simulation and PyMatching for decoding,
+        the study injects localized high-intensity bursts and compares two control policies: maintaining a nominal
+        distance-5 code (static redundancy) and dynamically reconfiguring to a distance-3 code (degraded operation).
+      </p>
+      <h4 style="margin-top:0.6rem;">Key Modeling Assumptions</h4>
+      <ul>
+        <li>Spatially correlated burst region <span class="math">Q<sub>burst</sub></span> is modeled as the top-left quadrant (≈50% of the lattice).</li>
+        <li>Physical noise: background depolarizing channel <span class="math">𝒟(p<sub>phys</sub>)</span>; burst adds <span class="math">p<sub>burst</sub></span> inside <span class="math">Q<sub>burst</sub></span>.</li>
+        <li>Performability evaluated as <span class="math">R(p) = (1 - P<sub>L</sub>(p)) × V<sub>config</sub></span> with <span class="math">V<sub>d=5</sub> = 1.0</span> and <span class="math">V<sub>d=3</sub> = 0.6</span>.</li>
+        <li>Current simulations assume instantaneous, error-free switching; latency-aware analysis is proposed via SANs.</li>
+      </ul>
+      <h4 style="margin-top:0.6rem;">Findings (summary)</h4>
+      <p style="margin-top:0;">
+        While dynamic code deformation physically preserves the logical qubit during localized bursts, the performability
+        analysis in the simulated parameter regime indicates that the utility penalty of downgrading (40% in this study)
+        outweighs the survival benefit. The report frames this as a quantitative design boundary and proposes SAN-based
+        latency-aware extensions to determine when dynamic reconfiguration becomes beneficial.
+      </p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Course Project — Design, Analysis and Validation of Reliable Computing Systems</p>
+  <p style="font-size:0.8rem; opacity:0.65;">
+    References: Google Quantum AI (2023); Fowler et al. (2012); Trivedi (Performability Theory)
+  </p>
+</footer>
+
+<!-- JS: Read Report button behavior + image fallback -->
+<script>
+  (function () {
+    // Handle Read Report button: open in new tab and trigger download
+    function openAndDownloadPDF(pdfUrl, filename) {
+      // open in new tab
+      var newWin = window.open(pdfUrl, '_blank');
+      // trigger download
+      var link = document.createElement('a');
+      link.href = pdfUrl;
+      link.download = filename || '';
+      // Some browsers block automatic downloads from scripts; we still attempt it.
+      document.body.appendChild(link);
+      try {
+        link.click();
+      } catch (e) {
+        // ignore
+      }
+      document.body.removeChild(link);
+      // If popup blocked, alert with fallback (non-intrusive)
+      if (!newWin) {
+        // do not be annoying; provide visible fallback by focusing the download link
+        console.warn('Popup blocked. Please use the Open in new tab or Download buttons.');
+      }
+    }
+
+    var pdfPath = 'Design_Analysis_Final_Paper.pdf';
+    var btns = document.querySelectorAll('#readReportBtn, #readReportBtnInline');
+    btns.forEach(b => {
+      b.addEventListener('click', function (e) {
+        e.preventDefault();
+        openAndDownloadPDF(pdfPath, 'Design_Analysis_Final_Paper.pdf');
+      });
+    });
+
+    // Replace broken images with a placeholder
+    const imgs = document.querySelectorAll('img.project-img');
+    imgs.forEach(img => {
+      img.onerror = function () {
+        this.onerror = null;
+        this.src = 'images/placeholder.png';
+        this.alt = 'Placeholder image';
+      };
+    });
+  })();
+</script>
 
 </body>
 </html>
